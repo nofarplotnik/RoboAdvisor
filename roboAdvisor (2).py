@@ -30,6 +30,8 @@ def start(update: Update, context: CallbackContext) -> int:
                                 '\n'
                                 'לסיום לחץ /cancel ' ''
                                 ' \n')
+    update.message.reply_text(  'האפליקציה פותחה כחלק מקורס פינטק באקדמית תל אביב-יפו במסגרת אקדמאית לימודית. אין לראות בהמלצות המלצות אמיתיות, אלא יש להתייעץ עם יועץ מוסמך.'
+                                )
     update.message.reply_text(
         'היי אני Robo Advisor, נעים מאוד להכיר ! \n'
         'אני כאן בכדי לעזור להתאים שלושה מסלולי השקעות עבורך. \n מה שלומך היום ? '
@@ -102,7 +104,7 @@ def gorm(update: Update, context: CallbackContext) -> int:
     user = update.message.from_user
     reply_keyboard = [['1', '2']]
     update.message.reply_text(
-         "לחץ 1 עבור גיני 2 עבור מרקוביץ",
+         "לחץ 1 עבור גיני, 2 עבור מרקוביץ",
         reply_markup=ReplyKeyboardMarkup(
             reply_keyboard, one_time_keyboard=True, input_field_placeholder='1 עבור גיני 2 עבור מרקוביץ'
         ),
@@ -180,13 +182,17 @@ def markowitz(update: Update, context: CallbackContext) -> int:
         , reply_markup=ReplyKeyboardRemove()
         )
         update.message.reply_text(
+            'האפליקציה פותחה כחלק מקורס פינטק באקדמית תל אביב-יפו במסגרת אקדמאית לימודית. אין לראות בהמלצות המלצות אמיתיות, אלא יש להתייעץ עם יועץ מוסמך.'
+            )
+        update.message.reply_text(
             'השקעה בטוחה להתראות!', reply_markup=ReplyKeyboardRemove()
         )
         return ConversationHandler.END
     if update.message.text == "1":
-        update.message.reply_text(
-            'אנא בחר את רגישות הסיכון \n'
-            'נמוך בינוני או גבוה?',
+        update.message.reply_text('אנא רשום את הרגישות שלך לסיכון. כאשר סיכון נמוך הכוונה שכמעט אינך רגיש לסיכון אלא מסתכל בעיקר על התשואות. וכאשר תגדיר סיכון גבוה הפירוש שהוא רגיש מאוד לתנודתיות השוק.'
+        '\n'
+        'לחץ 1 לסיכון נמוך, 2 לסיכון בינוני או 3 לסיכון גבוה.'
+        ,
             reply_markup=ReplyKeyboardRemove()
         )
         return GINI
@@ -194,11 +200,11 @@ def markowitz(update: Update, context: CallbackContext) -> int:
 
 def gini(update: Update, context: CallbackContext) -> int:
     user = update.message.from_user
-    if update.message.text=='נמוך':
+    if update.message.text=="1":
         V=1.25
-    elif update.message.text=='בינוני':
+    elif update.message.text=="2":
         V = 2
-    elif update.message.text == 'גבוה':
+    elif update.message.text == "3":
         V = 4
     yf.pdr_override()
     frame = {}
@@ -300,6 +306,8 @@ def gini(update: Update, context: CallbackContext) -> int:
         "Max returns Porfolio:" + '\n' + Max_returns_Porfolio + '\n' + '\n' + "Safest Portfolio:" + '\n' + Safest_Portfolio + '\n' + '\n' + "Sharpe Portfolio:" + '\n' + Sharpe_Portfolio
         , reply_markup=ReplyKeyboardRemove()
     )
+    update.message.reply_text(  'האפליקציה פותחה כחלק מקורס פינטק באקדמית תל אביב-יפו במסגרת אקדמאית לימודית. אין לראות בהמלצות המלצות אמיתיות, אלא יש להתייעץ עם יועץ מוסמך.'
+                                )
     update.message.reply_text(
         'השקעה בטוחה להתראות!', reply_markup=ReplyKeyboardRemove()
     )
@@ -312,6 +320,8 @@ def gini(update: Update, context: CallbackContext) -> int:
 def cancel(update: Update, context: CallbackContext) -> int:
     """Cancels and ends the conversation."""
     user = update.message.from_user
+    update.message.reply_text(  'האפליקציה פותחה כחלק מקורס פינטק באקדמית תל אביב-יפו במסגרת אקדמאית לימודית. אין לראות בהמלצות המלצות אמיתיות, אלא יש להתייעץ עם יועץ מוסמך.'
+                                )
     update.message.reply_text(
         'השקעה בטוחה להתראות!', reply_markup=ReplyKeyboardRemove()
     )
